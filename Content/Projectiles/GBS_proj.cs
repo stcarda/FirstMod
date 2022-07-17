@@ -8,9 +8,9 @@ namespace FirstMod.Content.Projectiles
     {
         public override void SetDefaults()
         {
-            projectile.friendly = true;
-            projectile.ignoreWater = true;
-            projectile.melee = true;
+            Projectile.friendly = true;
+            Projectile.ignoreWater = true;
+            Projectile.DamageType = DamageClass.Melee;
         }
     }
 }

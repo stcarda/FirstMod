@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "udzh9CVcpMgYlm6/vzUdDd6pOnY9SvqFElOpJ8VCXlev4hNYDLyvrli1uNBLNkCS9nc340ccHpmb7Hn6EuyaOg==",
+  "dgSpecHash": "qUjNhnHXmvg1Hf1Gsbq9hRB7XmDDM0kL6i24EswL2xPhsudSNSkqaObIloQtt6ax/inmLKm6rrT4KDEOmYcCCw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sean Carda\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\FirstMod\\FirstMod.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Sean Carda\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\Sean Carda\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\FirstMod\\FirstMod.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

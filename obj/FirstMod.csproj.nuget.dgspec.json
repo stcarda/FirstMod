@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sean Carda\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\FirstMod\\FirstMod.csproj": {}
+    "C:\\Users\\Sean Carda\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\FirstMod\\FirstMod.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sean Carda\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\FirstMod\\FirstMod.csproj": {
+    "C:\\Users\\Sean Carda\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\FirstMod\\FirstMod.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sean Carda\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\FirstMod\\FirstMod.csproj",
+        "projectUniqueName": "C:\\Users\\Sean Carda\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\FirstMod\\FirstMod.csproj",
         "projectName": "FirstMod",
-        "projectPath": "C:\\Users\\Sean Carda\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\FirstMod\\FirstMod.csproj",
+        "projectPath": "C:\\Users\\Sean Carda\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\FirstMod\\FirstMod.csproj",
         "packagesPath": "C:\\Users\\Sean Carda\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sean Carda\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\FirstMod\\obj\\",
+        "outputPath": "C:\\Users\\Sean Carda\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\FirstMod\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sean Carda\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net45"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net45": {
-            "targetAlias": "net45",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -37,15 +37,19 @@
         }
       },
       "frameworks": {
-        "net45": {
-          "targetAlias": "net45",
-          "dependencies": {
-            "tModLoader.CodeAssist": {
-              "target": "Package",
-              "version": "[0.1.*, )"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
         }
       }
     }

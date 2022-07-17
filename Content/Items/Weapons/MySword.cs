@@ -18,34 +18,34 @@ namespace FirstMod.Content.Items.Weapons
         public override void SetDefaults()
         {
             // Set the damage and knockback done by the item.
-            item.damage = 30;
-            item.knockBack = 2;
+            Item.damage = 30;
+            Item.knockBack = 2;
 
             // Set the "class" type of this item. This is a boolean that denotes
             // what style of weapon this weapon is and isn't.
-            item.melee = true;
+            Item.DamageType = DamageClass.Melee/* tModPorter Suggestion: Consider MeleeNoSpeed for no attack speed scaling */;
 
             // Set the animation style used by the weapon. You should not use
             // an integer for this anymore.
-            item.useStyle = ItemUseStyleID.SwingThrow;
+            Item.useStyle = ItemUseStyleID.Swing;
 
             // Set the timing of the animation. The difference between the
             // two is not known yet.
-            item.useTime = 20;
-            item.useAnimation = 20;
-            item.UseSound = SoundID.Item1;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.UseSound = SoundID.Item1;
 
             // Set the hitbox height and width. These should typically be the
             // same.
-            item.width = 25;
-            item.height = 25;
+            Item.width = 25;
+            Item.height = 25;
 
             // Set rarity. You may need to lookup values for this.
-            item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.LightRed;
 
             // Set whether or not we can swing this item by just holding
             // down the left mouse click.
-            item.autoReuse = true;
+            Item.autoReuse = true;
 
         }
     }

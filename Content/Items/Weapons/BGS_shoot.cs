@@ -18,22 +18,22 @@ namespace FirstMod.Content.Items.Weapons
         public override void SetDefaults()
         {
             // Set the weapon behavior properties.
-            item.damage = 100;
-            item.knockBack = 6;
-            item.melee = true;
+            Item.damage = 100;
+            Item.knockBack = 6;
+            Item.DamageType = DamageClass.Melee/* tModPorter Suggestion: Consider MeleeNoSpeed for no attack speed scaling */;
 
             // Set the hold style.
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.shoot = true;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.shoot = 3;
 
             // Set the properties of the animation.
-            item.useTime = 20;
-            item.useAnimation = 20;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
 
             // Hitbox properties.
-            item.height = 5;
-            item.width = 5;
-            item.autoReuse = true;
+            Item.height = 5;
+            Item.width = 5;
+            Item.autoReuse = true;
         }
     }
 }

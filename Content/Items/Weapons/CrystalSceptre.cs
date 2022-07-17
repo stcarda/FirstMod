@@ -1,4 +1,5 @@
-﻿using Terraria.ModLoader;
+﻿using Terraria.DataStructures;
+using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria;
 using Microsoft.Xna.Framework;
@@ -15,37 +16,37 @@ namespace FirstMod.Content.Items.Weapons
                                " crystal projectiles that split upon impact.");
 
             // This is a tag that corrects the positioning of the staff on the player when held.
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
             // Basic item info.
-            item.rare = ItemRarityID.LightPurple;
+            Item.rare = ItemRarityID.LightPurple;
 
             // Set the item damage and knockback.
-            item.damage = 20;
-            item.knockBack = 5;
+            Item.damage = 20;
+            Item.knockBack = 5;
 
             // Set reusability.
-            item.autoReuse = true;
+            Item.autoReuse = true;
 
             // Set the item to be from the magic class and set the mana to be consumed.
-            item.magic = true;
-            item.noMelee = true;
-            item.mana = 10;
+            Item.DamageType = DamageClass.Magic;
+            Item.noMelee = true;
+            Item.mana = 10;
 
             // Hitbox dimension info.
-            item.height = 40;
-            item.width = 40;
+            Item.height = 40;
+            Item.width = 40;
 
             // Animation / use time. Set the speed of the cast animation.
-            item.useAnimation = 20;
-            item.useTime = 20;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.UseSound = SoundID.Item8;
-            item.shoot = ProjectileID.CrystalPulse;
-            item.shootSpeed = 5;
+            Item.useAnimation = 20;
+            Item.useTime = 20;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.UseSound = SoundID.Item8;
+            Item.shoot = ProjectileID.CrystalPulse;
+            Item.shootSpeed = 5;
         }
 
         public override Vector2? HoldoutOrigin()
@@ -53,9 +54,9 @@ namespace FirstMod.Content.Items.Weapons
             return new Vector2(0, 20);
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Vector2 offset = new Vector2(speedX * 3, speedY * 3);
+            Vector2 offset = 3 * velocity;
             position += offset;
             return true;
         }
