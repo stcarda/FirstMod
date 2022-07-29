@@ -1,63 +1,54 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Modules;
+using System;
 
-namespace FirstMod.Content.Projectiles
-{
-    class LudwigProj : ModProjectile
-    {
-        public override void SetStaticDefaults()
-        {
+namespace FirstMod.Content.Projectiles {
+    class LudwigProj : ModProjectile {
+        public override void SetStaticDefaults() {
             DisplayName.SetDefault("True Daemon's Blood Greatsword");
-            Main.projFrames[Projectile.type] = 6;
         }
 
-        public override void SetDefaults()
-        {
-            // Set projectile hitbox params.
-            Projectile.width = 100;
-            Projectile.height = 100;
-            Projectile.ignoreWater = true;
-            Projectile.tileCollide = false;
+		public override void SetDefaults() {
+			// Damage properties. 
+			Projectile.DamageType = DamageClass.Magic;
+			Projectile.penetrate = 3;
+			Projectile.friendly = true;
+			Projectile.hostile = false;
+			
+			// Anitation and AI properties.
+			Projectile.aiStyle = -1;
+			Projectile.width = 29;
+			Projectile.height = 131;
+			Projectile.timeLeft = 600;
+			Projectile.light = 0.25f;
 
-            // Friendly means that the projectile will hit enemies.
-            Projectile.friendly = true;
+			// Physics properties.
+			Projectile.ignoreWater = false;
+			Projectile.tileCollide = false;
+			Projectile.ownerHitCheck = true;
+		}
 
-            // Call what type of projectile this is from the DamageClass class.
-            Projectile.DamageType = DamageClass.Melee;
+        public override void AI() {
+			// Increment the projectile's internal timer. This is essential for
+			// parameters to be able to change.
+			Projectile.ai[0]++;
+			float currentTime = Projectile.ai[0];
 
-            // Hostile is by default false, but we will set it here.
-            Projectile.hostile = false;
-
-            // We may hit 3 enemies before the projectile is destroyed.
-            Projectile.penetrate = 3;
-
-            // Projectile animation params.
-            Projectile.timeLeft = 15;
-        }
-
-        public override void AI()
-        {
-            // Update the frame of the projectile based on the counter.
-            Projectile.frameCounter++; 
-            if (Projectile.frameCounter >=  5)
-            {
-                Projectile.frame++;
-                Projectile.frameCounter = 0;
+			// If we are starting the call to AI(), we would like for the projectile
+			// to start with some random rotation.
+			if (currentTime == 1) {
+				Random random = new Random();
+				Projectile.rotation = (float)(Math.PI * (2 * random.NextDouble() - 1));
             }
 
-            // Get the angle of the projectile.
-            Vector2 angle = new Vector2(Projectile.ai[0], Projectile.ai[1]);
-            Projectile.rotation = angle.ToRotation();
+			// Slow the velocity to a near halt. It is sufficient to do this by
+			// scaling the velocity vector.
+			Projectile.velocity *= 0.97f;
 
-            // Get the player from Main and set the position of the projecile to be
-            // the center of the player.
-            Player player = Main.player[Projectile.owner];
-            Projectile.position = player.Center + angle - new Vector2(
-                Projectile.width / 2,
-                Projectile.height / 2
-            );
-        }
+			// Augment the projectile's rotation.
+			Projectile.rotation += (2 / currentTime);
+		}
     }
 }
