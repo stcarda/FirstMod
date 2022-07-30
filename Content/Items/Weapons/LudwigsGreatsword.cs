@@ -31,13 +31,41 @@ namespace FirstMod.Content.Items.Weapons {
             Item.useAnimation = 35;
 
             // Hitbox properties.
-            Item.height = 60;
-            Item.width = 60;
+            Item.height = 100;
+            Item.width = 100;
             Item.autoReuse = true;
         }
 
         public override void UseStyle(Player player, Rectangle heldItemFrame) {
             player.itemLocation.X = player.Center.X;
-        }        
+        }
+
+        public override bool Shoot(
+            Player player, 
+            EntitySource_ItemUse_WithAmmo source, 
+            Vector2 position, 
+            Vector2 velocity, 
+            int type, 
+            int damage, 
+            float knockback
+        ) {
+            // Get the number of projectiles currently owned by this weapon.
+            int swordProjectileType = Mod.Find<ModProjectile>("LudwigProj").Type;
+            int projectileCount = player.ownedProjectileCounts[swordProjectileType];
+            if (projectileCount <= 2) {
+                Projectile.NewProjectile(
+                    source,
+                    position,
+                    velocity,
+                    type,
+                    damage,
+                    knockback,
+                    player.whoAmI,
+                    0f,
+                    0f
+                );
+            }
+            return false;
+        }
     }
 }

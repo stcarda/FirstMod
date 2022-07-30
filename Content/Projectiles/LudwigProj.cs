@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FirstMod.Utils;
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Modules;
-using System;
+using Terraria.Utilities;
 
 namespace FirstMod.Content.Projectiles {
     class LudwigProj : ModProjectile {
@@ -36,6 +38,11 @@ namespace FirstMod.Content.Projectiles {
 			Projectile.ai[0]++;
 			float currentTime = Projectile.ai[0];
 
+			// Get a reference to the player and the number of projectiles currently
+			// owned by the player.
+			Player player = Main.player[Projectile.owner];
+			int projectileCount = player.ownedProjectileCounts[Projectile.type];
+
 			// If we are starting the call to AI(), we would like for the projectile
 			// to start with some random rotation.
 			if (currentTime == 1) {
@@ -46,9 +53,17 @@ namespace FirstMod.Content.Projectiles {
 			// Slow the velocity to a near halt. It is sufficient to do this by
 			// scaling the velocity vector.
 			Projectile.velocity *= 0.97f;
+			Vector2 projectileVelocity = Projectile.velocity;
 
 			// Augment the projectile's rotation.
 			Projectile.rotation += (2 / currentTime);
+
+			// If we have reached a sufficiently slow speed, start raining blood.
+			if (VectorHelpers.L2Norm(projectileVelocity) < 0.001f) {
+
+            }
 		}
-    }
+
+		// Function for the sqrt of a vector (since I do not know of one that 
+	}
 }
