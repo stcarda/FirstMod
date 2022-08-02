@@ -3,10 +3,9 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using FirstMod.Content.Projectiles;
 
 // This is a weapon from the mod FirstMod.
-namespace FirstMod.Content.Items.Weapons {
+namespace FirstMod.Content.Items.Weapons.Greatswords {
     class LudwigsGreatsword : ModItem {
         public override void SetStaticDefaults() {
             // Set the name of the item that is seen in-game.
@@ -41,19 +40,19 @@ namespace FirstMod.Content.Items.Weapons {
         }
 
         public override bool Shoot(
-            Player player, 
-            EntitySource_ItemUse_WithAmmo source, 
-            Vector2 position, 
-            Vector2 velocity, 
-            int type, 
-            int damage, 
+            Player player,
+            EntitySource_ItemUse_WithAmmo source,
+            Vector2 position,
+            Vector2 velocity,
+            int type,
+            int damage,
             float knockback
         ) {
             // Get the number of projectiles currently owned by this weapon.
             int swordProjectileType = Mod.Find<ModProjectile>("LudwigProj").Type;
             int projectileCount = player.ownedProjectileCounts[swordProjectileType];
             if (projectileCount <= 2) {
-                Projectile.NewProjectile(
+                Projectile.NewProjectileDirect(
                     source,
                     position,
                     velocity,

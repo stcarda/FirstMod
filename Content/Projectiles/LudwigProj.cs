@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Modules;
 using Terraria.Utilities;
@@ -23,8 +24,8 @@ namespace FirstMod.Content.Projectiles {
 			Projectile.aiStyle = -1;
 			Projectile.width = 29;
 			Projectile.height = 131;
-			Projectile.timeLeft = 600;
-			Projectile.light = 0.25f;
+			Projectile.timeLeft = 800;
+			Projectile.light = 0.75f;
 
 			// Physics properties.
 			Projectile.ignoreWater = false;
@@ -38,14 +39,9 @@ namespace FirstMod.Content.Projectiles {
 			Projectile.ai[0]++;
 			float currentTime = Projectile.ai[0];
 
-			// Get a reference to the player and the number of projectiles currently
-			// owned by the player.
-			Player player = Main.player[Projectile.owner];
-			int projectileCount = player.ownedProjectileCounts[Projectile.type];
-
 			// If we are starting the call to AI(), we would like for the projectile
 			// to start with some random rotation.
-			if (currentTime == 1) {
+			if (currentTime < 2f) {
 				Random random = new Random();
 				Projectile.rotation = (float)(Math.PI * (2 * random.NextDouble() - 1));
             }
@@ -56,14 +52,22 @@ namespace FirstMod.Content.Projectiles {
 			Vector2 projectileVelocity = Projectile.velocity;
 
 			// Augment the projectile's rotation.
-			Projectile.rotation += (2 / currentTime);
+			Projectile.rotation += (1.2f / currentTime);
 
 			// If we have reached a sufficiently slow speed, start raining blood.
-			if (VectorHelpers.L2Norm(projectileVelocity) < 0.001f) {
-
-            }
+			if (PseudoNumpyHelpers.L2Norm(projectileVelocity) < 0.05f) {
+				Projectile.NewProjectileDirect(
+					Projectile.GetSource_FromThis(),
+					Projectile.Center,
+					0.1f * new Vector2(0, 1),
+					ProjectileID.GoldenShowerFriendly,
+					2,
+					0f,
+					Main.myPlayer,
+					0f,
+					0f
+				);
+			}
 		}
-
-		// Function for the sqrt of a vector (since I do not know of one that 
 	}
 }
