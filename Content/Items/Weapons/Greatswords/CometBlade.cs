@@ -95,7 +95,7 @@ namespace FirstMod.Content.Items.Weapons.Greatswords {
             Projectile.scale = 1.5f;
 
             // Physics properties.
-            Projectile.ignoreWater = false;
+            Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
             Projectile.ownerHitCheck = true;
         }
