@@ -7,7 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace FirstMod.Content.Items.Weapons.Greatswords {
+namespace FirstMod.Content.Items.Weapons.Greatswords.CometBlade {
     internal class CometBlade : ModItem {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Drynseaux's Uncarved Cometstone Sabre");
@@ -36,6 +36,7 @@ namespace FirstMod.Content.Items.Weapons.Greatswords {
             Item.scale = 1.5f;
             Item.noUseGraphic = true;
             Item.noMelee = true;
+            Item.channel = false;
 
             // Hitbox and physics properties.
             Item.width = 80;
@@ -51,12 +52,12 @@ namespace FirstMod.Content.Items.Weapons.Greatswords {
         }
 
         public override bool Shoot(
-            Player player, 
-            EntitySource_ItemUse_WithAmmo source, 
-            Vector2 position, 
-            Vector2 velocity, 
-            int type, 
-            int damage, 
+            Player player,
+            EntitySource_ItemUse_WithAmmo source,
+            Vector2 position,
+            Vector2 velocity,
+            int type,
+            int damage,
             float knockback
         ) {
             Projectile.NewProjectile(
@@ -105,7 +106,7 @@ namespace FirstMod.Content.Items.Weapons.Greatswords {
             Projectile.ai[0]++;
             float currentTime = Projectile.ai[0];
             Player player = Main.player[Projectile.owner];
-            
+
             // If we have died, we want to destroy the projectile.
             if (player.dead) {
                 Projectile.Kill();
@@ -117,7 +118,7 @@ namespace FirstMod.Content.Items.Weapons.Greatswords {
                 // Ensure that the sword is facing the direction of the player.
                 // This also adjusts the hitbox.
                 Projectile.spriteDirection = player.direction;
-                
+
                 if (currentTime < 2f) {
                     Projectile.rotation = player.direction * degreesToRadians(-60);
                 }
@@ -137,22 +138,22 @@ namespace FirstMod.Content.Items.Weapons.Greatswords {
             // If the current time is less than 10s, start a VERY slow upward swing
             // to build tension.
             if (currentTime < 10f) {
-                Projectile.rotation -= (player.direction) * 0.01f;
-            } 
+                Projectile.rotation -= player.direction * 0.01f;
+            }
             // If we have performed the buildup, then swing down REALLY fast.
             else if (10f <= currentTime && currentTime <= 15f) {
-                Projectile.rotation += (player.direction) * 0.35f;
+                Projectile.rotation += player.direction * 0.35f;
 
                 // Need to account for the change in position as the sword comes down.
                 Projectile.position += new Vector2(
-                    player.direction * Projectile.Size.X / 15f, 
+                    player.direction * Projectile.Size.X / 15f,
                     Projectile.Size.Y / 7.5f
                 );
-            } 
+            }
             // When we have completed the swing, stop moving for the remainder of the
             // animation.
             else {
-                Projectile.rotation -= (player.direction) * 0.01f;
+                Projectile.rotation -= player.direction * 0.01f;
 
                 // Again, we need to account for the change in position to ensure
                 // that the sword is still tracking the player after the complete
@@ -198,7 +199,7 @@ namespace FirstMod.Content.Items.Weapons.Greatswords {
         }
 
         public float degreesToRadians(float degrees) {
-            return (float)Math.IEEERemainder((Math.PI / 180) * degrees, Math.PI);
+            return (float)Math.IEEERemainder(Math.PI / 180 * degrees, Math.PI);
         }
     }
 }
